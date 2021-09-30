@@ -1,24 +1,43 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../LandingPage/Header";
 
+import { useFormik } from "formik";
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+    // validate: values => {
+    //   let errors = {}
+
+    //   if(!values.email || !values.password ){
+    //     errors.email = "Email is required"
+    //   }
+
+    //   return errors
+    // }
+  });
+
   return (
     <>
       <Header />
       <Section></Section>
       <LoginForm>
-        <FormGroup>
+        <FormGroup onSubmit={formik.handleSubmit}>
           <h1>Login</h1>
           <Label htmlFor="email">
             Email Address
             <Input
               type="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
               required
               placeholder="Enter your email"
             />
@@ -26,24 +45,28 @@ const Login = () => {
           <Label htmlFor="password">
             <Labels>
               <p>Password</p>
-              <ForgetPassword>Forgot your password?</ForgetPassword>
+              <Link to="/forgotPassword" style={{ "text-decoration": "none" }}>
+                <ForgetPassword>Forgot your password?</ForgetPassword>
+              </Link>
             </Labels>
             <Input
               type="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formik.values.password}
+              onChange={formik.handleChange}
               required
               placeholder="Enter your password"
             />
           </Label>
           <Wrapper>
-            <LoginButton>Login</LoginButton>
+            <LoginButton type="submit">Login</LoginButton>
           </Wrapper>
         </FormGroup>
         <CreateAccount>
           <p>New to MyJobs?</p>
-          <Create>Create an account</Create>
+          <Link to="/signup" style={{ "text-decoration": "none" }}>
+            <Create>Create an account</Create>
+          </Link>
         </CreateAccount>
       </LoginForm>
       <LightSection></LightSection>
@@ -61,7 +84,7 @@ const Section = styled.section`
 `;
 
 const LightSection = styled.section`
-  height: 320px;
+  height: 325px;
   background: #edf6ff;
   width: auto;
 `;
@@ -80,7 +103,7 @@ const LoginForm = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const FormGroup = styled.div`
+const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,7 +163,7 @@ const CreateAccount = styled.div`
   align-items: center;
 `;
 
-const Create = styled.a`
+const Create = styled.p`
   margin-left: 5px;
   color: #43afff;
   cursor: pointer;

@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../LandingPage/Header";
+import { useFormik } from "formik";
 
 const ResetPassword = () => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      newPassword: "",
+      confirmNewPassword: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <>
@@ -14,14 +22,14 @@ const ResetPassword = () => {
         <h1>Reset Your Password</h1>
         <p>Enter your new password below</p>
 
-        <Form>
+        <Form onSubmit={formik.handleSubmit}>
           <Label>
             New Password
             <Input
               type="password"
               name="newPassword"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              value={formik.values.newPassword}
+              onChange={formik.handleChange}
               required
               placeholder="Enter new password"
             />
@@ -31,8 +39,8 @@ const ResetPassword = () => {
             <Input
               type="password"
               name="ConfirmNewPassword"
-              value={confirmNewPassword}
-              onChange={(e) => setConfirmNewPassword(e.target.value)}
+              value={formik.values.confirmNewPassword}
+              onChange={formik.handleChange}
               required
               placeholder="Enter new password"
             />

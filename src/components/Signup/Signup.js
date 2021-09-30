@@ -1,19 +1,47 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useFormik } from "formik";
 import Header from "../LandingPage/Header";
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [skills, setSkills] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      skills: [],
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+    validate: (values) => {
+      let error = {};
+
+      if (!values.name) error.name = "The field is mandatory";
+
+      if (!values.email) {
+        error.email = "Email is required";
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      )
+        error.email = "Invalid Email";
+
+      if (!values.password || !values.confirmPassword) {
+        error.password = "This field is mandatory";
+        error.confirmPassword = "This field is mandatory";
+      }
+
+      return error;
+    },
+  });
+
   return (
     <>
       <Header />
       <Section></Section>
       <LoginForm>
-        <FormGroup>
+        <FormGroup onSubmit={formik.handleSubmit}>
           <h1>Signup</h1>
           <JobProfile></JobProfile>
           <Label htmlFor="fullname">
@@ -21,31 +49,33 @@ const Signup = () => {
             <Input
               type="text"
               name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formik.values.name}
+              onChange={formik.handleChange}
               required
               placeholder="Enter your full name"
             />
           </Label>
+          {formik.errors.name ? <Error>{formik.errors.name}</Error> : null}
           <Label>
             Email Address*
             <Input
               type="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formik.values.email}
+              onChange={formik.handleChange}
               required
               placeholder="Enter your full name"
             />
           </Label>
+          {formik.errors.email ? <Error>{formik.errors.email}</Error> : null}
           <Password>
             <Label>
               Create Password*
               <PasswordInput
                 type="password"
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formik.values.password}
+                onChange={formik.handleChange}
                 required
                 placeholder="Enter your password"
               />
@@ -55,31 +85,36 @@ const Signup = () => {
               <PasswordInput
                 type="password"
                 name="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
                 required
                 placeholder="Re-enter your password"
               />
             </Label>
           </Password>
+          {formik.errors.confirmPassword ? (
+            <Error>{formik.errors.confirmPassword}</Error>
+          ) : null}
           <Label>
-            Skills*
+            Skills
             <Input
               type="text"
               name="skills"
-              value={skills}
-              onChange={(e) => setSkills(e.target.value)}
+              value={formik.values.skills}
+              onChange={formik.handleChange}
               required
               placeholder="Enter comma seperated skills"
             />
           </Label>
           <Wrapper>
-            <LoginButton>Signup</LoginButton>
+            <LoginButton type="submit">Signup</LoginButton>
           </Wrapper>
         </FormGroup>
         <CreateAccount>
           <p>Have an account?</p>
-          <Create>Login</Create>
+          <Link to="/login" style={{ "text-decoration": "none" }}>
+            <Create>Login</Create>
+          </Link>
         </CreateAccount>
       </LoginForm>
       <LightSection></LightSection>
@@ -119,7 +154,7 @@ const LoginForm = styled.div`
   margin-top: 10%;
 `;
 
-const FormGroup = styled.div`
+const FormGroup = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -190,4 +225,15 @@ const Create = styled.a`
   margin-left: 5px;
   color: #43afff;
   cursor: pointer;
+`;
+
+const Error = styled.div`
+  width: auto;
+  color: red;
+  font-size: 12px;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
 `;
