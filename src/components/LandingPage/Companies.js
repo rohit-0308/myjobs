@@ -5,8 +5,18 @@ const Companies = () => {
     <Section>
       <Text>Companies Who Trust Us</Text>
       <Logos>
-        <Up></Up>
-        <Down></Down>
+        <Up>
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+        </Up>
+        <Down>
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
+        </Down>
       </Logos>
     </Section>
   );
@@ -28,6 +38,22 @@ const Text = styled.p`
 
 const Logos = styled.div``;
 
-const Up = styled.div``;
+const Up = styled.div`
+  margin-left: 12%;
+  margin-top: 50px;
+  display; flex;
+  justify-content: space-between;
+`;
 
-const Down = styled.div``;
+const Down = styled.div`
+  margin-left: 12%;
+  margin-top: 50px;
+  display; flex;
+  justify-content: space-between;
+`;
+
+const Img = styled.img`
+  height: 55px;
+  width: 150px;
+  margin: 20px;
+`;

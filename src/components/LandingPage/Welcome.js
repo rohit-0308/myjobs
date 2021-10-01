@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   return (
@@ -8,10 +9,12 @@ const Welcome = () => {
           Welcome to <br />
           My<Span>Jobs</Span>
         </WelcomeText>
-        <GetStarted>Get Started</GetStarted>
+        <Link to="/login">
+          <GetStarted>Get Started</GetStarted>
+        </Link>
       </TextContainer>
       <ImageContainer>
-        <img src="/assets/images/welcome.png" alt="Welcome" />
+        <img src="/assets/images/women.jpg" alt="Welcome" />
       </ImageContainer>
     </Container>
   );
@@ -21,10 +24,13 @@ export default Welcome;
 
 const Container = styled.div`
   height: 464px;
+  width: 50%;
   background: transparent linear-gradient(248deg, #303f60 0%, #1a253c 100%) 0%
     0% no-repeat padding-box;
   width: auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const WelcomeText = styled.p`
@@ -48,15 +54,21 @@ const GetStarted = styled.button`
   border-radius: 5px;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const TextContainer = styled.div``;
 
-const ImageContainer = styled.image`
-  width: 420px;
+const ImageContainer = styled.div`
+  width: 622px;
   height: 395px;
+  border-radius: 20px;
+  margin-right: 150px;
+  margin-top: 180px;
 
   img {
+    width: 100%;
     height: 100%;
+    border-radius: 20px;
   }
 `;

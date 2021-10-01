@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const NoJobs = () => {
   return (
     <Wrapper>
       <Icon src="/assets/images/file.png" />
       <p>Your posted jobs will show here!</p>
-      <Button>Post a Job</Button>
+      <Link to="/postJob">
+        <Button>Post a Job</Button>
+      </Link>
     </Wrapper>
   );
 };

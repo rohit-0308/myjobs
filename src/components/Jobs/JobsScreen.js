@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+
 import Header from "../LandingPage/Header";
 import JobCard from "./JobCard";
 import NoJobs from "./NoJobs";
@@ -22,6 +23,7 @@ const JobsScreen = () => {
       <Section>
         <HomeIcon>
           <Icon src="/assets/images/home.png" />
+
           <Span>Home</Span>
         </HomeIcon>
         <Title>Jobs posted by you</Title>
