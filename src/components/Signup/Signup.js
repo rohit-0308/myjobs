@@ -152,7 +152,7 @@ const Signup = () => {
 export default Signup;
 
 const Section = styled.section`
-  height: 400px;
+  height: 320px;
   background: transparent linear-gradient(248deg, #303f60 0%, #1a253c 100%) 0%
     0% no-repeat padding-box;
   width: auto;

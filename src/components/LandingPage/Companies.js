@@ -16,6 +16,7 @@ const Companies = () => {
           <Img src="/assets/images/google.png" alt="google" />
           <Img src="/assets/images/google.png" alt="google" />
           <Img src="/assets/images/google.png" alt="google" />
+          <Img src="/assets/images/google.png" alt="google" />
         </Down>
       </Logos>
     </Section>
@@ -36,24 +37,28 @@ const Text = styled.p`
   padding: 70px 0 0 200px;
 `;
 
-const Logos = styled.div``;
+const Logos = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Up = styled.div`
-  margin-left: 12%;
-  margin-top: 50px;
+  margin-top: 25px;
   display; flex;
   justify-content: space-between;
 `;
 
 const Down = styled.div`
-  margin-left: 12%;
-  margin-top: 50px;
+  margin-top: 25px;
   display; flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Img = styled.img`
   height: 55px;
   width: 150px;
-  margin: 20px;
+  margin: 20px 40px;
 `;

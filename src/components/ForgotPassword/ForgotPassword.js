@@ -45,14 +45,14 @@ const ForgotPassword = () => {
 export default ForgotPassword;
 
 const Section = styled.section`
-  height: 300px;
+  height: 320px;
   background: transparent linear-gradient(248deg, #303f60 0%, #1a253c 100%) 0%
     0% no-repeat padding-box;
   width: auto;
 `;
 
 const LightSection = styled.section`
-  height: 345px;
+  height: 325px;
   background: #edf6ff;
   width: auto;
 `;

@@ -65,7 +65,7 @@ const Section = styled.section`
 `;
 
 const LightSection = styled.section`
-  height: 320px;
+  height: 325px;
   background: #edf6ff;
   width: auto;
 `;

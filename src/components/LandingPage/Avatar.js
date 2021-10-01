@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 
 const Avatar = () => {
-  //   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const history = useHistory();
+  const handleAuth = () => {
+    localStorage.removeItem("token");
+    history.push("/");
+  };
   return (
     <Container>
       <Link
@@ -16,7 +21,12 @@ const Avatar = () => {
         <Text>Post a Job</Text>
       </Link>
       <User>A</User>
-      <FaCaretDown className="icon" />
+      <Signout>
+        <FaCaretDown className="icon" />
+        <DropDown>
+          <span onClick={handleAuth}>Logout</span>
+        </DropDown>
+      </Signout>
     </Container>
   );
 };
@@ -54,4 +64,29 @@ const User = styled.div`
   font-weight: bold;
   color: #303f60;
   opacity: 0.8;
+`;
+
+const DropDown = styled.div`
+  position: absolute;
+  top: 88px;
+  right: 58px;
+  background: white;
+  width: 100px;
+  height: 37px;
+  border-radius: 5px;
+  display: flex;
+  padding-left: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
+  cursor: pointer;
+`;
+
+const Signout = styled.div`
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
 `;
