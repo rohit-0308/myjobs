@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
-import Header from "../Signup-login Header/Header";
+import Header from "../../Signup-login Header/Header";
 
 const Signup = () => {
   const history = useHistory();

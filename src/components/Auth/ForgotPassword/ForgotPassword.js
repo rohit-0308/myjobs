@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useFormik } from "formik";
-import Header from "../LandingPage/Header";
+import Header from "../../LandingPage/Header";
 
 const ForgotPassword = () => {
   const formik = useFormik({

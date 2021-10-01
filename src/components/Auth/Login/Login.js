@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Header from "../Signup-login Header/Header";
+import Header from "../../Signup-login Header/Header";
 import axios from "axios";
 
 import { useFormik } from "formik";

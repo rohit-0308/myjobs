@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Header from "../LandingPage/Header";
+import Header from "../../LandingPage/Header";
 import { useFormik } from "formik";
 
 const ResetPassword = () => {
