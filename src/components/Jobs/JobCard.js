@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import React, { useState } from "react";
+import ViewApplicationModal from "../ViewApplicationModal/ViewApplicationModal";
 
 const JobCard = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <Card>
@@ -10,8 +14,17 @@ const JobCard = (props) => {
           possimus saepe ipsa ratione...
         </p>
         <Wrapper>
-          <p>Bangalore</p>
-          <Button>View Applications</Button>
+          <LocationWrapper>
+            <Icon src="/assets/images/pin.png" />
+            <p>Bangalore</p>
+          </LocationWrapper>
+          <Button onClick={() => setIsModalOpen(true)}>
+            View Applications
+          </Button>
+          <ViewApplicationModal
+            open={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </Wrapper>
       </Card>
     </>
@@ -43,4 +56,17 @@ const Button = styled.button`
   background-color: #43afff33;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+`;
+
+const LocationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Icon = styled.img`
+  height: 20px;
+  width: 20px;
+  padding-right: 5px;
 `;
