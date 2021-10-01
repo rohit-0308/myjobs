@@ -6,6 +6,7 @@ import Signup from "./components/Signup/Signup";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import JobsScreen from "./components/Jobs/JobsScreen";
+import PostJob from "./components/Jobs/PostJob/PostJob";
 
 function App() {
   return (
@@ -17,10 +18,10 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/forgotPassword" component={ForgotPassword} />
           <Route path="/resetPassword" component={ResetPassword} />
+          <Route path="/home" component={JobsScreen} />
+          <Route path="/postJob" component={PostJob} />
         </Switch>
       </Router>
-
-      {/* <JobsScreen /> */}
     </>
   );
 }

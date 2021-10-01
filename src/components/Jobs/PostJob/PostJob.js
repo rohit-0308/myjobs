@@ -48,7 +48,7 @@ const PostJob = () => {
         <HomeIcon>
           <Icon src="/assets/images/home.png" />
           <Span>
-            <Link to="/home">
+            <Link to="/home" style={{ "text-decoration": "none" }}>
               <Span>Home</Span>
             </Link>{" "}
             > Post a Job
@@ -136,7 +136,7 @@ const Icon = styled.img`
 const Span = styled.span`
   color: white;
   padding: 0 8px;
-  opacity: 0.8;
+  opacity: 1;
 `;
 
 const JobForm = styled.div`
