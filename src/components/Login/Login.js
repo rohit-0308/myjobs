@@ -1,17 +1,36 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Header from "../LandingPage/Header";
+import Header from "../Signup-login Header/Header";
+import axios from "axios";
 
 import { useFormik } from "formik";
 
 const Login = () => {
+  const [error, setError] = useState();
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({ email, password }) => {
+      try {
+        const data = await axios.post(
+          " https://jobs-api.squareboat.info/api/v1/auth/login",
+          {
+            email,
+            password,
+          }
+        );
+        const token = data.data.data.token;
+        localStorage.setItem("token", token);
+        history.push("/home");
+      } catch (error) {
+        setError("Invalid Credentials");
+        console.log("Invalid credentials");
+      }
     },
     // validate: values => {
     //   let errors = {}
@@ -68,6 +87,7 @@ const Login = () => {
             <Create>Create an account</Create>
           </Link>
         </CreateAccount>
+        {error ? <p>{error}</p> : null}
       </LoginForm>
       <LightSection></LightSection>
     </>

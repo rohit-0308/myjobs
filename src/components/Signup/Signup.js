@@ -1,19 +1,46 @@
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import Header from "../LandingPage/Header";
+import axios from "axios";
+import Header from "../Signup-login Header/Header";
 
 const Signup = () => {
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: {
+      userRole: 0,
       name: "",
       email: "",
       password: "",
       confirmPassword: "",
-      skills: [],
+      skills: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async ({
+      userRole,
+      name,
+      email,
+      password,
+      confirmPassword,
+      skills,
+    }) => {
+      const data = await axios.post(
+        " https://jobs-api.squareboat.info/api/v1/auth/register",
+        {
+          userRole,
+          name,
+          email,
+          password,
+          confirmPassword,
+          skills,
+        }
+      );
+      const token = data.data.data.token;
+      const userName = data.data.data.name;
+      localStorage.setItem("token", token);
+      localStorage.setItem("userName", userName);
+      history.push("/home");
     },
     validate: (values) => {
       let error = {};
