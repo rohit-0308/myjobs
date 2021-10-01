@@ -68,4 +68,5 @@ const Card = styled.div`
   padding: 20px;
   box-shadow: 0px 3px 6px #557da526;
   border-radius: 5px;
+  margin-right: 20px;
 `;
