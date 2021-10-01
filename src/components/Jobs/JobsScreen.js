@@ -1,10 +1,20 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import Header from "../LandingPage/Header";
 import JobCard from "./JobCard";
 import NoJobs from "./NoJobs";
+import axios from "axios";
 
 const JobsScreen = () => {
-  let a = [1, 2];
+  const [jobs, setJobs] = useState([]);
+  useEffect(async () => {
+    const response = await axios.get(
+      "https://jobs-api.squareboat.info/api/v1/jobs"
+    );
+
+    console.log(response.data.data);
+    setJobs(response.data.data);
+  }, []);
 
   return (
     <>
@@ -16,16 +26,17 @@ const JobsScreen = () => {
         </HomeIcon>
         <Title>Jobs posted by you</Title>
       </Section>
-      {a.length > 0 && (
-        <JobsCardWrapper>
-          <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
-        </JobsCardWrapper>
-      )}
+      <JobsCardWrapper>
+        {jobs.map((job) => (
+          <JobCard
+            title={job.title}
+            desc={job.description}
+            location={job.location}
+          />
+        ))}
+      </JobsCardWrapper>
 
-      <LightSection>{a.length === 0 && <NoJobs />}</LightSection>
+      <LightSection></LightSection>
     </>
   );
 };
@@ -77,4 +88,5 @@ const JobsCardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-right: 12px;
+  flex-wrap: wrap;
 `;
