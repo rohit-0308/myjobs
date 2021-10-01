@@ -68,7 +68,7 @@ const User = styled.div`
 
 const DropDown = styled.div`
   position: absolute;
-  top: 88px;
+  top: 63px;
   right: 58px;
   background: white;
   width: 100px;

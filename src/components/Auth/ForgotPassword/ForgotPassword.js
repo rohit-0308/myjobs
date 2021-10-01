@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
+
 import Header from "../../LandingPage/Header";
 
 const ForgotPassword = () => {
@@ -33,7 +35,9 @@ const ForgotPassword = () => {
             placeholder="Enter your email"
           />
           <ButtonWrapper>
-            <Button type="submit">Submit</Button>
+            <Link to="/resetPassword">
+              <Button type="submit">Submit</Button>
+            </Link>
           </ButtonWrapper>
         </Form>
       </ForgotPasswordSection>
